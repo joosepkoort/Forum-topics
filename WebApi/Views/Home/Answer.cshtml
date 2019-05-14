@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>My Forumtopics</h2>
+<div class="container" ng-app="Forumtopicapp" ng-controller="ForumtopicController">
+    <table class="table table-striped">
+        <div class="col-sm-10">
+            <input type="text" ng-change="getForumtopicByName(value)" ng-model="value" placeholder="Search By Forumtopic name!" />
+        </div>
+
+        <div class="col-sm-10">
+            <input type="text" ng-change="getByComponent(value2)" ng-model="value2" placeholder="Search By component name!" />
+        </div>
+        <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" />
+
+        <thead>
+
+            <tr>
+                <th>
+                    Edit
+                </th>
+                <th>title</th>
+                <th>intro</th>
+                <th>body</th>
+                <th>created</th>
+                <th>author</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="Forumtopic in Forumtopics">
+
+                <td>
+                    <button ng-click="edit(Forumtopic)" class="btn">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        EDIT
+                    </button>
+                </td>
+                <td ng-bind="Forumtopic.ForumtopicName"</td>
+                <td ng-bind="Forumtopic.ForumtopicDescription"</td>
+
+                <div ng-repeat="value in Forumtopics">
+                    <td ng-bind="Forumtopic.components[0].componentName"</td>
+
+                </div>
+                <td ng-bind="Forumtopic.instructions"</td>
+
+                <td>
+                <td>
+                    <button ng-click="delete(Forumtopic)" class="btn">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                        DELETE
+                    </button>
+                </td>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h3>Edit Forumtopic:</h3>
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Forumtopic name:</label>
+                <div class="col-sm-10">
+                    <input ng-model="selectedForumtopic.ForumtopicName" type="text" placeholder="Forumtopic name" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <input ng-model="selectedForumtopic.ForumtopicDescription" type="text" placeholder="Description" />
+                </div>
+            </div>
+        </form>
+
+        <hr />
+        <button ng-click="update()" class="btn btn-success">
+            <span class="glyphicon glyphicon-save"></span> Save Changes
+        </button>
+    </div>
+    <div>
+        <h3>Add new Forumtopic:</h3>
+        <form class="form-horizontal" ng-submit="submit_form()">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">title:</label>
+                <div class="col-sm-10">
+                    <input ng-model="formAdata.title" type="text" placeholder="intro" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">intro:</label>
+                <div class="col-sm-10">
+                    <input ng-model="formAdata.intro" type="text" placeholder="intro" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">body:</label>
+                <div class="col-sm-10">
+                    <input ng-model="formAdata.body" type="text" placeholder="body" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">created:</label>
+                <div class="col-sm-10">
+                    <input ng-model="formAdata.created" type="text" placeholder="created" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">author:</label>
+                <div class="col-sm-10">
+                    <input ng-model="formAdata.author" type="text" placeholder="author" />
+                </div>
+            </div>
+        </form>
+
+        <hr />
+        <button ng-click="post()" class="btn btn-success">
+            <span class="glyphicon glyphicon-save"></span> Add new Forumtopic
+
+        </button>
+
+
+    </div>
+
+</div>
+
+<script src="~/Scripts/angular.js"></script>
+<script src="~/app/app.js"></script>
+<script src="~/app/ForumtopicController.js"></script>
+<script src="~/app/ForumtopicService.js"></script>
+
